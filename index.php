@@ -1,24 +1,41 @@
 <?php
-    include_once("helpers/url.php");
-
+include_once("templates/header.php");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLOG EM PHP</title>
+    <main>
+        <div id="title-container">
+            <h1>
+                Blog Para conteúdo de programação
 
-    <!-- Estilo do projeto -->
-    <link rel="stylesheet" href="<?=$BASE_URL?>css/style.css">
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <h1>
-        TESTE
-    </h1>
-</body>
-</html>
+            </h1>
+
+            <p>
+                A sua fonte de contéudo de programação
+            </p>
+        </div>
+
+        <div id="posts-container">
+            <?php
+                foreach($posts as $post): ?>
+                <div class="post-box">
+                    <img src="img/<?=$post['img']?>" alt="<?=$post['title'] ?>">
+                    <h2 class="post-title">
+                        <a href="post.php?id=<?= $post['id']?>"> <?= $post['title']?> </a>
+                    
+                    </h2>
+
+                    <p class="description"> <?= $post['description'] ?> </p>
+                    <div class="tags-container">
+                        <?php foreach($post['tags'] as $tag): ?>
+
+                        <a href="#"> <?= $tag?> </a>
+                        <?php endforeach; ?>
+                    </div>
+                    
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </main>
+
+<?php
+    include_once("templates/footer.php")
+?>
